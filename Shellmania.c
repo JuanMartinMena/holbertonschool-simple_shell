@@ -67,6 +67,8 @@ int Recorrer_el_path(char * input)
 		return (1);
 	}
 	strcpy(path_copy, path); // copia el contenido de path a path_copy
+	token2 = strtok(path_copy, "=");
+	token2 = strtok(NULL, "=");
 	token2 = strtok(path_copy, ":");
 	while (token2 != NULL) // se fija en todo el path
 	{
@@ -96,8 +98,8 @@ int Recorrer_el_path(char * input)
 			free(path_copy);
 			free(super_path);
 		}
+		strtok(NULL, ":");
 	}
-	free(path_copy);
 	perror("No encontre una mielda");
 }
 int f_w_e(char *pathname, char *argv[], char *envp[])
@@ -109,14 +111,16 @@ int f_w_e(char *pathname, char *argv[], char *envp[])
 	if (child_pidi == 0)
 	{
 		printf("gane papaaa");
-		return (execve(pathname, argv, envp));
+		execve(pathname, argv, envp);
 	}
 	else if (child_pidi > 0)
 	{
 		wait(&status);
-		printf("soy papa");
-		return (0);
 	}
 	else
+	{
 		perror("no pude ejecutar pa");
+		return (-1)
+	}
+	return (0);
 }
