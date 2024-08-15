@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 int main(int ac, char **av, char **env)
 {
 	int status, i = 0, j = 0;
@@ -23,6 +25,7 @@ int main(int ac, char **av, char **env)
 		token = strtok(line, p);
 		if (token == NULL)
 			continue;
+		else
 		// Antes de stat hacer o tener en cuenta los comandos que no hay que buscar en el path ??????????????????????????
 		// Hacemos stat
 			if // token existe en el path (nos pasaron la direccion completa)
@@ -41,11 +44,12 @@ int main(int ac, char **av, char **env)
 }
 int Recorrer_el_path(char * input)
 {
-	const char *path = getenv("PATH"); // Hacemos que path contenga los valores del PATH
-	int encontro = 0;
+	const char *path = _getenv("PATH"); // Hacemos que path contenga los valores del PATH
 	size_t input_len, path_len, super_path_len;
 	char *super_path;
 	char *path_copy;
+
+
 
 	if (path == NULL)
 	{
@@ -68,7 +72,7 @@ int Recorrer_el_path(char * input)
 		super_path = malloc(super_path_len);
 		if (super_path == NULL)
 		{
-			perror("Error al asignar memoria");
+			perror("No hay pa vo");
 			free(path_copy);
 			return (1);
 		}
@@ -78,11 +82,11 @@ int Recorrer_el_path(char * input)
 		strcat(super_path, input); // agregamos el input del usuario a super_path
 		// Ahora super_path tiene la info de la "ruta de path/input"
 		// Casos
-		if (stat(input, super_path, NULL))
+		if (stat(super_path, &sb) != -1)
 		{
 			free(path_copy);
 			free(super_path);
-			return(Funca);
+			return(0);
 		}
 		else
 		{
@@ -90,37 +94,10 @@ int Recorrer_el_path(char * input)
 			free(super_path);
 		}
 	}
+	free(path_copy);
+	perror("No encontre una mielda");
 }
-
-
-
-
-
-
-
-
-
-	if (token2 == NULL)
-		perror("Fallo de strtok");
-	while(token2[i] != NULL) // recorrer el path
-	{
-		token_len = (strlen(token) + strlen(token2) + 2); // Calculamos el largo del nuevo path
-		super_path = malloc(sizeof(token_len); // reservar espacio del largo de token_len a super_path
-		if (super_path == NULL)
-		{
-			perror();
-			return(1);
-		}
-		//pegamos en super_path el token2 y luego le concatenamos el token (lo que nos pasa el usuario)
-		super_path = strdup(token2);
-		super_path = strcat(token);
-		if (stat(super_path))
-			return;
-		else
-			free(super_path);
-		i++;
-	}
-	perror(no enconte nada pa);
-	return;
+int f_w_e(char * input)
+{
+	
 }
-
