@@ -11,7 +11,6 @@ int main(int ac, char **av, char **env)
 	char * token, token2, p = " ", line = NULL;
 	size_t len = 0;
 	ssize_t read = 0;
-	pid_t child_pidi;
 
 	while(1)
 	{
@@ -26,6 +25,11 @@ int main(int ac, char **av, char **env)
 		if (token == NULL)
 			continue;
 		else
+
+
+			path = Recorre el path(whfqh)
+
+			f_w_e(path,token ,NULL)
 		// Antes de stat hacer o tener en cuenta los comandos que no hay que buscar en el path ??????????????????????????
 		// Hacemos stat
 			if // token existe en el path (nos pasaron la direccion completa)
@@ -85,8 +89,7 @@ int Recorrer_el_path(char * input)
 		if (stat(super_path, &sb) != -1)
 		{
 			free(path_copy);
-			free(super_path);
-			return(0);
+			return(super_path);
 		}
 		else
 		{
@@ -97,7 +100,23 @@ int Recorrer_el_path(char * input)
 	free(path_copy);
 	perror("No encontre una mielda");
 }
-int f_w_e(char * input)
+int f_w_e(char *pathname, char *argv[], char *envp[])
 {
-	
+	pid_t child_pidi;
+	int status;
+
+	child_pidi = fork();
+	if (child_pidi == 0)
+	{
+		printf("gane papaaa");
+		return (execve(pathname, argv, envp));
+	}
+	else if (child_pidi > 0)
+	{
+		wait(&status);
+		printf("soy papa");
+		return (0);
+	}
+	else
+		perror("no pude ejecutar pa");
 }
