@@ -8,7 +8,7 @@
  */
 char *Recorrer_el_path(char *input)
 {
-	const char *path = getenv("PATH");
+	const char *path = _getenv("PATH");
 	size_t input_len, path_len, super_path_len;
 	char *super_path, *path_copy, *token2;
 	struct stat sb;

@@ -8,11 +8,15 @@
  */
 int main(int ac, char **av, char **env)
 {
-	int status, i = 0, j = 0;
-	char * token, token2, p = " ", line = NULL;
+	char *path;
+	char *line = NULL;
 	size_t len = 0;
 	ssize_t read = 0;
+	struct stat sb;
+	int comando;
 
+	(void)ac;
+	(void)env;
 	while(1)
 	{
 		printf("$ ");
@@ -22,24 +26,24 @@ int main(int ac, char **av, char **env)
 			perror("getline");
 			break;
 		}
-		token = strtok(line, p);
-		if (token == NULL)
-			continue;
+		av = array_kingdom(line);
+			
+		if (stat(line, &sb) != -1)
+		{
+			comando = f_w_e(line, av, NULL);
+			if (comando)
+				continue;
+		}
 		else
 		{
-
-		// Hacemos stat
-			if // token existe en el path (nos pasaron la direccion completa)
+			path = Recorrer_el_path(line);
+			if (path == NULL)
 			{
-				// fork + wait + execeve (pasandole los argumentos (flags))
 			}
-			else // si stat no retorno succes chequeamos si esta en el path manualmente
-			{
-				if // Encontramos en el path token agregandola despues de cada dir eje: bin/ls, perro/ls, kkk/ls, etc
-                                        	// fork + wait + execeve (pasandole los argumentos (flags))???????????????????????????
-				else // Si no se encuentra en el path el comando
-				     perror(no encontre el comando pa)
-			}
+			else
+				f_w_e(path, av, NULL);
 		}
 	}
+	return (0);
 }
+

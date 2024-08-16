@@ -18,7 +18,7 @@ char *_getenv(const char *name)
 		var_name_len = equal_sign - *env;
 		if (var_name_len == name_len && strncmp(*env, name, name_len) == 0)
 		{
-			return (equal_sign +1);
+			return (equal_sign + 1);
 		}
 		env++;
 	}
