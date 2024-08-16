@@ -26,12 +26,8 @@ int main(int ac, char **av, char **env)
 		if (token == NULL)
 			continue;
 		else
+		{
 
-
-			path = Recorre el path(whfqh)
-
-			f_w_e(path,token ,NULL)
-		// Antes de stat hacer o tener en cuenta los comandos que no hay que buscar en el path ??????????????????????????
 		// Hacemos stat
 			if // token existe en el path (nos pasaron la direccion completa)
 			{
@@ -44,6 +40,6 @@ int main(int ac, char **av, char **env)
 				else // Si no se encuentra en el path el comando
 				     perror(no encontre el comando pa)
 			}
-		free (line)
+		}
 	}
 }
