@@ -9,17 +9,18 @@
 char **array_kingdom(char *line)
 {
 	char *input;
-	int i = 0, input_len = 0;
+	int i = 1, input_len = 0;
 	char **guardado = NULL;
-
+	// primero es armar el array de arrays
+	guardado = malloc(sizeof(char*) * 1024);
+	input = strtok(line, " \n");
+	guardado[0] = input;
 	while (input != NULL)
 	{
-		input_len = strlen(input);
-		guardado[i] = malloc(sizeof(input_len));
-		input = strtok(line, " ");
+		input = strtok(NULL, " \n");
 		guardado[i] = input;
-		input = strtok(NULL, " ");
 		i++;
 	}
+	guardado[i] = NULL;
 	return (guardado);
 }

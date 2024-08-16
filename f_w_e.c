@@ -13,6 +13,8 @@ int f_w_e(char *pathname, char *argv[], char *envp[])
 	pid_t child_pidi;
 	int status;
 
+
+	printf("%s\n", pathname);
 	child_pidi = fork();
 	if (child_pidi == 0)
 	{
