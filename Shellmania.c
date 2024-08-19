@@ -13,7 +13,7 @@ int main(int ac, char **av, char **env)
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
-	int comando;
+	int comando, i = 0;
 	char **xd = NULL;
 
 	(void)av;
@@ -26,27 +26,38 @@ int main(int ac, char **av, char **env)
 		line[read] = '\0';
 		if (read == -1)
 		{
+			free(line);
 			perror("getline");
 			break;
 		}
 		xd = array_kingdom(line);
-		printf("%s\n", xd[0]);
+		if (xd == NULL)
+			continue;
 		if (stat(xd[0], &sb) != -1)
 		{
 			comando = f_w_e(xd[0], xd, NULL);
-			if (comando)
-				continue;
+			if (comando == -1)
+			{
+				break;
+			}
 		}
 		else
 		{
-			printf("aca si?\n");
+			//alojar memoria para path
 			path = Recorrer_el_path(xd[0]);
 			if (path == NULL)
 			{
+				free(line);
+				for (i = 0; xd[i] != NULL; i++)
+					free(xd[i]);
+				free(xd);
+				break;
 			}
 			else
 				f_w_e(path, xd, NULL);
+		free(path);
 		}
+	free(line);
 	}
 	return (0);
 }

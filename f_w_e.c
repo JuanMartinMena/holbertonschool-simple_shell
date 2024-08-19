@@ -14,11 +14,9 @@ int f_w_e(char *pathname, char *argv[], char *envp[])
 	int status;
 
 
-	printf("%s\n", pathname);
 	child_pidi = fork();
 	if (child_pidi == 0)
 	{
-		printf("gane papaaa");
 		execve(pathname, argv, envp);
 		perror("execve fallo");
 		return (-1);
@@ -29,7 +27,6 @@ int f_w_e(char *pathname, char *argv[], char *envp[])
 	}
 	else
 	{
-		perror("no pude ejecutar pa");
 		return (-1);
 	}
 	return (0);

@@ -30,7 +30,6 @@ char *Recorrer_el_path(char *input)
 		super_path = malloc(super_path_len);
 		if (super_path == NULL)
 		{
-			perror("No hay pa vo");
 			free(path_copy);
 			return (NULL);
 		}
@@ -42,9 +41,8 @@ char *Recorrer_el_path(char *input)
 			free(path_copy);
 			return (super_path);
 		}
-		else
-			free(super_path);
-		token2 = strtok(NULL, ":");
+	free(super_path);
+	token2 = strtok(NULL, ":");
 	}
 	free(path_copy);
 	return (NULL);
