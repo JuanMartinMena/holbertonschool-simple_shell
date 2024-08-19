@@ -23,13 +23,8 @@ int main(int ac, char **av, char **env)
 	{
 		printf("$ ");
 		read = getline(&line, &len, stdin);
-		line[read] = '\0';
 		if (read == -1)
-		{
-			free(line);
-			perror("getline");
-			break;
-		}
+			continue;
 		xd = array_kingdom(line);
 		if (xd == NULL)
 			continue;
@@ -43,22 +38,22 @@ int main(int ac, char **av, char **env)
 		}
 		else
 		{
-			//alojar memoria para path
 			path = Recorrer_el_path(xd[0]);
 			if (path == NULL)
 			{
-				free(line);
-				for (i = 0; xd[i] != NULL; i++)
-					free(xd[i]);
-				free(xd);
 				break;
 			}
 			else
 				f_w_e(path, xd, NULL);
 		free(path);
 		}
-	free(line);
+		while (xd[i] != NULL)
+		{
+			free(xd[i]);
+			i++;
+		}
+		free(xd);
 	}
+	free(line);
 	return (0);
 }
-

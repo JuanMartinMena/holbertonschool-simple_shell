@@ -17,26 +17,28 @@ int count_strings(char *line)
 		count++;
 		input = strtok(NULL, " \n\t");
 	}
+	free(line_copy);
 	return (count);
 }
 char **array_kingdom(char *line)
 {
-	char *input;
+	char *input, *line_copy = strdup(line);
 	int i = 1, count = 0;
 	char **guardado = NULL;
 
-	count = count_strings(line);
+	count = count_strings(line_copy);
 	guardado = malloc(sizeof(char*) * (count + 1));
 	if (guardado == NULL)
 	{
 		return (NULL);
 	}
-	input = strtok(line, " \n\t");
+	input = strtok(line_copy, " \n\t");
 	guardado[0] = input;
 	while (input != NULL)
 	{
 		input = strtok(NULL, " \n\t");
-		guardado[i] = input;
+		if (input)
+			guardado[i] = input;
 		i++;
 	}
 	guardado[i] = NULL;
