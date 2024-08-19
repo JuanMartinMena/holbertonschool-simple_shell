@@ -25,6 +25,14 @@ int main(int ac, char **av, char **env)
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 			continue;
+		
+		line[strcspn(line, "\n")] = 0;
+		if (strcmp(line, "cape") == 0)
+        	{
+           		 printf("peladito\n");
+			 continue;
+		}
+
 		xd = array_kingdom(line);
 		if (xd == NULL)
 			continue;
@@ -33,7 +41,7 @@ int main(int ac, char **av, char **env)
 			comando = f_w_e(xd[0], xd, NULL);
 			if (comando == -1)
 			{
-				break;
+				continue;
 			}
 		}
 		else
@@ -41,7 +49,7 @@ int main(int ac, char **av, char **env)
 			path = Recorrer_el_path(xd[0]);
 			if (path == NULL)
 			{
-				break;
+				continue;
 			}
 			else
 				f_w_e(path, xd, NULL);

@@ -30,6 +30,7 @@ char **array_kingdom(char *line)
 
 	if (line == NULL || line_copy == NULL)
 		return (NULL);
+
 	count = count_strings(line_copy);
 	if (count == 0)
 	{
