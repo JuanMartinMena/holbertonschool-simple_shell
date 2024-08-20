@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * array_kingdom - guarda strigns en un array
+ * count_strings - cuenta la cantidad de palabras
  *
- * @line: string que nos pasen
+ * @line: El string al que se le contaran las palabras
  *
- * Return: Array de strings
+ * Return: numero de palabras
  */
 int count_strings(char *line)
 {
@@ -22,6 +22,13 @@ int count_strings(char *line)
 	free(line_copy);
 	return (count);
 }
+/**
+ * array_kingdom - guarda strigns en un array
+ *
+ * @line: string que nos pasen
+ *
+ * Return: Array de strings
+ */
 char **array_kingdom(char *line)
 {
 	char *input, *line_copy = strdup(line);
@@ -36,20 +43,20 @@ char **array_kingdom(char *line)
 	{
 		free(line_copy);
 		return (NULL);
-	}	
-	guardado = malloc(sizeof(char*) * (count + 1));
+	}
+	guardado = malloc(sizeof(char *) * (count + 1));
 	if (guardado == NULL)
 	{
 		free(line_copy);
 		return (NULL);
 	}
 	input = strtok(line_copy, " \n\t");
-	while (input != NULL) 
+	while (input != NULL)
 	{
 		guardado[i] = strdup(input);
-		if(guardado[i] == NULL)
+		if (guardado[i] == NULL)
 		{
-			while(i > 0)
+			while (i > 0)
 			{
 				i--;
 				free(guardado[i]);

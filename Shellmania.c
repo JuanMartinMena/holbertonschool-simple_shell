@@ -8,8 +8,7 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *path;
-	char *line = NULL;
+	char *path, *line = NULL;
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
@@ -19,20 +18,15 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	(void)ac;
 	(void)env;
-	while(1)
+	while (1)
 	{
 		printf("$ ");
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 			continue;
-		
 		line[strcspn(line, "\n")] = 0;
 		if (strcmp(line, "cape") == 0)
-        	{
-           		 printf("peladito\n");
-			 continue;
-		}
-
+			printf("peladito <3\n");
 		xd = array_kingdom(line);
 		if (xd == NULL)
 			continue;
@@ -40,17 +34,13 @@ int main(int ac, char **av, char **env)
 		{
 			comando = f_w_e(xd[0], xd, NULL);
 			if (comando == -1)
-			{
 				continue;
-			}
 		}
 		else
 		{
 			path = Recorrer_el_path(xd[0]);
 			if (path == NULL)
-			{
 				continue;
-			}
 			else
 				f_w_e(path, xd, NULL);
 		free(path);
