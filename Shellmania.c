@@ -8,11 +8,11 @@
  */
 int main(int ac, char **av, char **env)
 {
-	char *path, *line = NULL;
+	char *path, *line = NULL, *s = "sh";
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
-	int comando, i = 0;
+	int comando, i = 0, counter = 0;
 	char **xd = NULL;
 
 	(void)av;
@@ -20,11 +20,18 @@ int main(int ac, char **av, char **env)
 	(void)env;
 	while (1)
 	{
-		printf("$ ");
+		counter++;
+		if (isatty(STDIN_FILENO) == 1)
+			printf("$ ");
 		read = getline(&line, &len, stdin);
 		if (read == -1)
-			continue;
+			break;
 		line[strcspn(line, "\n")] = 0;
+		if (strcmp(line, "exit") == 0)
+		{
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
 		if (strcmp(line, "cape") == 0)
 			printf("peladito <3\n");
 		xd = array_kingdom(line);
@@ -40,7 +47,7 @@ int main(int ac, char **av, char **env)
 		{
 			path = Recorrer_el_path(xd[0]);
 			if (path == NULL)
-				continue;
+				_perror(s, counter, line);
 			else
 				f_w_e(path, xd, NULL);
 		free(path);
@@ -54,4 +61,13 @@ int main(int ac, char **av, char **env)
 	}
 	free(line);
 	return (0);
+}
+
+void *_perror(char *s, int counter, char *l)
+{
+	char *a;
+	a = malloc(sizeof(char*) * strlen(s) + strlen(l) + sizeof(int) + 5);
+	sprintf(a,"%s: %i: %s ", s, counter, l);
+	perror(a);
+	free(a);	
 }

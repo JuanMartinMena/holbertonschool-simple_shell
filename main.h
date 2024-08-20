@@ -13,4 +13,5 @@ int f_w_e(char *pathname, char *argv[], char *envp[]);
 char *Recorrer_el_path(char *input);
 char *_getenv(const char *name);
 char **array_kingdom(char *line);
+void *_perror(char *s, int counter, char *l);
 #endif
