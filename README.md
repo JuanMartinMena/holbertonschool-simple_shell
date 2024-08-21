@@ -97,3 +97,11 @@ Return = void(Error message);
 ### main.c
 ![Diagrama sin título drawio](https://github.com/user-attachments/assets/7fcd8353-4571-40ca-85a6-7e2da549fb0a)
 
+## count_strings.c && array_kingdom.c
+![array_kingdom c drawio](https://github.com/user-attachments/assets/10ac0814-44df-484c-9289-ac9f11ea37ee)
+
+## f_w_e.c
+![FWE drawio](https://github.com/user-attachments/assets/7db1b679-0442-4023-9e3f-411fc403d2f4)
+
+## Recorrer_el_path.c
+![Diagrama sin título drawio (1)](https://github.com/user-attachments/assets/4ef64cce-f34b-49a8-87ec-60c60a5d9cfc)
