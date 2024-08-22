@@ -1,12 +1,30 @@
 #include "main.h"
 /**
+ * free_array - Libera el espacio que ocupa un array de punteros
+ *
+ * @array: array a liberar
+ *
+ * Return: array liberado
+ */
+void free_array(char **array)
+{
+	int i = 0;
+
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+/**
  * main - interpreta comandos simples
  *
- * @ac: numero de argumentos pasados al programa
- * @av: Array de strings que contiene los argumentos pasados
  * @env: Array de strings que contine las variables de entorno del programa
+ *
+ * Return: return 0 if end
  */
-int main(int ac, char **av, char **env)
+int main(char **env)
 {
 	char *path, *line = NULL, *s = "sh";
 	size_t len = 0;
@@ -15,8 +33,6 @@ int main(int ac, char **av, char **env)
 	int comando, i = 0, counter = 0;
 	char **xd = NULL;
 
-	(void)av;
-	(void)ac;
 	(void)env;
 	while (1)
 	{
@@ -52,22 +68,26 @@ int main(int ac, char **av, char **env)
 				f_w_e(path, xd, NULL);
 		free(path);
 		}
-		while (xd[i] != NULL)
-		{
-			free(xd[i]);
-			i++;
-		}
-		free(xd);
+		free_array(xd);
 	}
 	free(line);
 	return (0);
 }
-
+/**
+ * _perror - mensaje de error
+ *
+ * @s: string "sh"
+ * @counter: numero de comandos ejecutados
+ * @l: input pasado
+ *
+ * Return: mensaje de error
+ */
 void *_perror(char *s, int counter, char *l)
 {
 	char *a;
-	a = malloc(sizeof(char*) * strlen(s) + strlen(l) + sizeof(int) + 5);
-	sprintf(a,"%s: %i: %s ", s, counter, l);
+
+	a = malloc(sizeof(char *) * strlen(s) + strlen(l) + sizeof(int) + 5);
+	sprintf(a, "%s: %i: %s ", s, counter, l);
 	perror(a);
-	free(a);	
+	free(a);
 }

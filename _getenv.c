@@ -1,7 +1,14 @@
 #include "main.h"
+/**
+ * _getenv - funcion para extraer el path de las variables de entorno
+ *
+ * @name: el string "path"
+ *
+ * Return: el contenido del path
+ *
+ */
 char *_getenv(const char *name)
 {
-	extern char **environ;
 	char **env = environ;
 	size_t name_len = strlen(name);
 	char *equal_sign;
