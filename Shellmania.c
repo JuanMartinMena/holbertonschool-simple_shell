@@ -22,7 +22,8 @@ void free_array(char **array)
  * main - interpreta comandos simples
  *
  * @env: Array de strings que contine las variables de entorno del programa
- *
+ * @ac: void
+ * @av: void
  * Return: return 0 if end
  */
 int main(__attribute__((unused))int ac,
@@ -89,6 +90,14 @@ char *_perror(char *s, int counter, char *l)
 	perror(a);
 	return (a);
 }
+/**
+ * print_array - printea un array de punteros a strings
+ *
+ * @array: array de punteros a strings
+ *
+ * Return: El mismo array pero habiendo printeado el contenido
+ *
+ */
 char **print_array(char **array)
 {
 	int i = 0;
