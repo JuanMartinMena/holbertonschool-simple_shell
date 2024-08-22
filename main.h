@@ -15,6 +15,7 @@ char *_getenv(const char *name);
 char **array_kingdom(char *line);
 char *_perror(char *s, int counter, char *l);
 void free_array(char **array);
+char **print_array(char **array);
 
 extern char **environ;
 

@@ -43,14 +43,16 @@ int main(void)
 		if (read == -1)
 			break;
 		xd = array_kingdom(line);
+		if (xd == NULL)
+			continue;
 		if (strcmp(xd[0], "exit") == 0)
 		{
 			free_array(xd);
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-		if (xd == NULL)
-			continue;
+		if (strcmp(xd[0], "env") == 0)
+			print_array(environ);
 		if (stat(xd[0], &sb) != -1)
 			f_w_e(xd[0], xd, NULL);
 		else
@@ -84,7 +86,18 @@ char *_perror(char *s, int counter, char *l)
 	char *a;
 
 	a = malloc(sizeof(char *) * strlen(s) + strlen(l) + sizeof(int) + 5);
-	sprintf(a, "%s: %i: %s ", s, counter, l);
+	sprintf(a,"%s: %i: %s ", s, counter, l);
 	perror(a);
 	return (a);
+}
+char **print_array(char **array)
+{
+	int i = 0;
+
+	while (array[i] != NULL)
+	{
+		printf("%s\n", array[i]);
+		i++;
+	}	
+	return (array);
 }
