@@ -25,7 +25,7 @@ void free_array(char **array)
  *
  * Return: return 0 if end
  */
-int main(void)
+int main(int ac, char **av, char **env)
 {
 	char *path, *line = NULL, *s = "sh", *a;
 	size_t len = 0;
@@ -34,6 +34,8 @@ int main(void)
 	int counter = 0;
 	char **xd = NULL;
 
+	(void)ac;
+	(void)av;
 	while (1)
 	{
 		counter++;
@@ -52,7 +54,7 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 		if (strcmp(xd[0], "env") == 0)
-			print_array(environ);
+			print_array(env);
 		if (stat(xd[0], &sb) != -1)
 			f_w_e(xd[0], xd, NULL);
 		else
@@ -85,6 +87,7 @@ char *_perror(char *s, int counter, char *l)
 {
 	char *a;
 
+	l[strcspn(l, "\n")] = 0;
 	a = malloc(sizeof(char *) * strlen(s) + strlen(l) + sizeof(int) + 5);
 	sprintf(a,"%s: %i: %s ", s, counter, l);
 	perror(a);
@@ -96,6 +99,7 @@ char **print_array(char **array)
 
 	while (array[i] != NULL)
 	{
+
 		printf("%s\n", array[i]);
 		i++;
 	}	
