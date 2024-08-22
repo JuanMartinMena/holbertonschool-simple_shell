@@ -42,13 +42,12 @@ int main(void)
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 			break;
-		line[strcspn(line, "\n")] = 0;
-		if (strcmp(line, "exit") == 0)
+		xd = array_kingdom(line);
+		if (strcmp(xd[0], "exit") == 0)
 		{
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-		xd = array_kingdom(line);
 		if (xd == NULL)
 			continue;
 		if (stat(xd[0], &sb) != -1)
