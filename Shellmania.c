@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * free_array - Libera el espacio que ocupa un array de punteros
  *
@@ -24,16 +25,15 @@ void free_array(char **array)
  *
  * Return: return 0 if end
  */
-int main(char **env)
+int main(void)
 {
-	char *path, *line = NULL, *s = "sh";
+	char *path, *line = NULL, *s = "sh", *a;
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
-	int comando, i = 0, counter = 0;
+	int counter = 0;
 	char **xd = NULL;
 
-	(void)env;
 	while (1)
 	{
 		counter++;
@@ -52,12 +52,15 @@ int main(char **env)
 		if (xd == NULL)
 			continue;
 		if (stat(xd[0], &sb) != -1)
-			comando = f_w_e(xd[0], xd, NULL);
+			f_w_e(xd[0], xd, NULL);
 		else
 		{
 			path = Recorrer_el_path(xd[0]);
 			if (path == NULL)
-				_perror(s, counter, line);
+			{
+				a = _perror(s, counter, line);
+				free(a);
+			}
 			else
 				f_w_e(path, xd, NULL);
 		free(path);
@@ -76,12 +79,12 @@ int main(char **env)
  *
  * Return: mensaje de error
  */
-void *_perror(char *s, int counter, char *l)
+char *_perror(char *s, int counter, char *l)
 {
 	char *a;
 
 	a = malloc(sizeof(char *) * strlen(s) + strlen(l) + sizeof(int) + 5);
 	sprintf(a, "%s: %i: %s ", s, counter, l);
 	perror(a);
-	free(a);
+	return (a);
 }
