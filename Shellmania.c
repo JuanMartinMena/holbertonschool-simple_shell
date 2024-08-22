@@ -45,6 +45,7 @@ int main(void)
 		xd = array_kingdom(line);
 		if (strcmp(xd[0], "exit") == 0)
 		{
+			free_array(xd);
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
