@@ -48,17 +48,11 @@ int main(char **env)
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
-		if (strcmp(line, "cape") == 0)
-			printf("peladito <3\n");
 		xd = array_kingdom(line);
 		if (xd == NULL)
 			continue;
 		if (stat(xd[0], &sb) != -1)
-		{
 			comando = f_w_e(xd[0], xd, NULL);
-			if (comando == -1)
-				continue;
-		}
 		else
 		{
 			path = Recorrer_el_path(xd[0]);
