@@ -23,7 +23,7 @@ int f_w_e(char *pathname, char *argv[], char *envp[])
 	else if (child_pidi > 0)
 	{
 		wait(&status);
-		return (WIFEXITED(status));
+		return (WEXITSTATUS(status));
 	}
 	else
 	{

@@ -35,7 +35,7 @@ int main(__attribute__((unused))int ac,
 	ssize_t read = 0;
 	struct stat sb;
 	int counter = 0, status = 0;
-	char **xd = NULL;
+	char **arr = NULL;
 
 	while (1)
 	{
@@ -45,28 +45,28 @@ int main(__attribute__((unused))int ac,
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 			break;
-		xd = array_kingdom(line);
-		if (xd == NULL)
+		arr = array_kingdom(line);
+		if (arr == NULL)
 			continue;
-		if (strcmp(xd[0], "exit") == 0)
-			free_array(xd), free(line), exit(status);
-		if (strcmp(xd[0], "env") == 0)
+		if (strcmp(arr[0], "exit") == 0)
+			free_array(arr), free(line), exit(status);
+		if (strcmp(arr[0], "env") == 0)
 			print_array(env);
 		else
 		{
-			if (stat(xd[0], &sb) != -1)
-				status = f_w_e(xd[0], xd, NULL);
+			if (stat(arr[0], &sb) != -1)
+				status = f_w_e(arr[0], arr, NULL);
 			else
 			{
-				path = follow_the_path(xd[0]);
+				path = follow_the_path(arr[0]);
 				if (path == NULL)
 					a = _perror(s, counter, line), free(a);
 				else
-					status = f_w_e(path, xd, NULL), free(path);
+					status = f_w_e(path, arr, NULL), free(path);
 			}
 
 		}
-		free_array(xd);
+		free_array(arr);
 	}
 	free(line);
 	return (status);
