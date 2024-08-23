@@ -49,7 +49,7 @@ Una vez descargados ejecutar en la terminal "**./output**".
 
 # <h2 align="left"> Objetivos de las funciones: </h2>
 
-* **Shellmania.c ->** Funcion principal (Main) que llama a las demas funciones para
+* **shellmania.c ->** Funcion principal (Main) que llama a las demas funciones para
 interpretar comandos o errores.
 ```
 int main(int ac, char **av, char **env);
@@ -70,7 +70,7 @@ Return fail = NULL;
 Return success = Array de punteros a strings;
 ```
 
-* **Recorrer_el_path.c ->** Agrega el input al final de cada ruta del PATH y comprueba
+* **follow_the_path.c ->** Agrega el input al final de cada ruta del PATH y comprueba
   que existe.
 ```
 char *Recorrer_el_path(char *input);
