@@ -34,7 +34,7 @@ int main(__attribute__((unused))int ac,
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
-	int counter = 0;
+	int counter = 0, status = 0;
 	char **xd = NULL;
 
 	while (1)
@@ -55,21 +55,21 @@ int main(__attribute__((unused))int ac,
 		else
 		{
 			if (stat(xd[0], &sb) != -1)
-				f_w_e(xd[0], xd, NULL);
+				status = f_w_e(xd[0], xd, NULL);
 			else
 			{
-				path = Recorrer_el_path(xd[0]);
+				path = follow_the_path(xd[0]);
 				if (path == NULL)
 					a = _perror(s, counter, line), free(a);
 				else
-					f_w_e(path, xd, NULL), free(path);
+					status = f_w_e(path, xd, NULL), free(path);
 			}
 
 		}
 		free_array(xd);
 	}
 	free(line);
-	return (0);
+	return (status);
 }
 /**
  * _perror - mensaje de error
