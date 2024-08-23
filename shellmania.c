@@ -49,7 +49,7 @@ int main(__attribute__((unused))int ac,
 		if (xd == NULL)
 			continue;
 		if (strcmp(xd[0], "exit") == 0)
-			free_array(xd), free(line), exit(EXIT_SUCCESS);
+			free_array(xd), free(line), exit(status);
 		if (strcmp(xd[0], "env") == 0)
 			print_array(env);
 		else
