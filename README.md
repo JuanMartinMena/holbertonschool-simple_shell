@@ -93,15 +93,20 @@ Return = void(Error message);
 # <h3 align="left">Flowcharts: </h3>
 
 ### main.c
-![Diagrama sin título drawio](https://github.com/user-attachments/assets/7fcd8353-4571-40ca-85a6-7e2da549fb0a)
+
+![WhatsApp Image 2024-08-24 at 2 35 21 PM](https://github.com/user-attachments/assets/d8537544-cba8-4a79-92be-ad0565dd7b5e)
 
 ## count_strings.c && array_kingdom.c
-![array_kingdom c drawio](https://github.com/user-attachments/assets/10ac0814-44df-484c-9289-ac9f11ea37ee)
+
+![WhatsApp Image 2024-08-24 at 2 35 20 PM](https://github.com/user-attachments/assets/b6376659-21aa-498b-a71c-b9bd5bdf898b)
 
 ## f_w_e.c
-![FWE drawio](https://github.com/user-attachments/assets/7db1b679-0442-4023-9e3f-411fc403d2f4)
+
+![WhatsApp Image 2024-08-24 at 2 35 21 PM (1)](https://github.com/user-attachments/assets/d8d020f6-3054-4b81-9c6f-eab68689c33b)
+
 
 ## follow_the_path.c
-![Diagrama sin título drawio (1)](https://github.com/user-attachments/assets/4ef64cce-f34b-49a8-87ec-60c60a5d9cfc)
+![WhatsApp Image 2024-08-24 at 2 35 21 PM (2)](https://github.com/user-attachments/assets/3958bf06-bc87-4e51-a8c8-e747006dffc9)
+
 
 **AUTHORS:** Juan Martín Mena && Luna Leguisamo.
